@@ -1,3 +1,7 @@
+import sys
+
+sys.stdin = open('GNS_test_input.txt')
+
 T = int(input())
 
 alien_num = {'ZRO': 0, 'ONE': 1, 'TWO': 2, 'THR': 3, 'FOR': 4,
