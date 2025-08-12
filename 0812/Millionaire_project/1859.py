@@ -14,13 +14,10 @@ for tc in range(1, T+1):
             buy_list.append(sale_price[i])
             sell_price = sale_price[i + 1]
 
-        elif sale_price[i] <= sale_price[i+1] <= sell_price:
+        elif sale_price[i] <= sell_price:
             buy_list.append(sale_price[i])
 
-        elif sale_price[i + 1] < sale_price[i] < sell_price:
-            buy_list.append(sale_price[i])
-
-        elif sale_price[i + 1] < sell_price < sale_price[i]:
+        elif sell_price < sale_price[i]:
             for _ in range(len(buy_list)):
                 my_money += sell_price - buy_list.pop()
             sell_price = 0
