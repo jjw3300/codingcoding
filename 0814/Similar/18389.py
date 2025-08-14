@@ -3,7 +3,7 @@ for tc in range(1, T + 1):
     icp = {'(': 3, '*': 2, '/': 2, '+': 1, '-': 1}
     isp = {'(': 0, '*': 2, '/': 2, '+': 1, '-': 1}
 
-    math_number = input()
+    math_number = input().strip()
     number = ''
     stack = []
 
