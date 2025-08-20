@@ -4,7 +4,6 @@ T = int(input())
 for tc in range(1, T + 1):
     n, m = map(int, input().split())
     pizza_list = deque(map(int, input().split()))
-    count = 1
     stove = deque()
     pizza_count = 0
     pizza_index = deque()
