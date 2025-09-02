@@ -1,23 +1,17 @@
-def inorder_traverse(node):
-    global index
-
-    if node > n:
-        return
-
-    inorder_traverse(node * 2)
-    tree[node] = index
-    index += 1
-    inorder_traverse(node * 2 + 1)
-
-
 T = int(input())
 for tc in range(1, T + 1):
     n = int(input())
-    tree = [0] * (n + 1)
-    index = 1
+    lines = []
 
-    inorder_traverse(1)
+    for _ in range(n):
+        lines.append(list(map(int, input().split())))
 
-    root = tree[1]
-    n_2 = tree[n // 2]
-    print(f'#{tc} {root} {n_2}')
+    answer = 0
+    for i in range(n):
+        for j in range(i + 1, n):
+            ai, bi = lines[i]
+            aj, bj = lines[j]
+            if (ai - aj) * (bi - bj) < 0:
+                answer += 1
+
+    print(f"#{tc} {answer}")

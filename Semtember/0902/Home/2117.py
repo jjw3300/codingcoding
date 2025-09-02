@@ -1,30 +1,44 @@
 from collections import deque
 
-T = 10
+
+def bfs(I, J, K):
+    visited = [[0 for _ in range(n)] for _ in range(n)]
+    queue = deque([(I, J, 0)])
+    visited[I][J] = 1
+    count = 0
+    delta = [(1, 0), (0, 1), (-1, 0), (0, -1)]
+
+    while queue:
+        x, y, d = queue.popleft()
+        if city[x][y] == 1:
+            count += 1
+
+        if d == K - 1:
+            continue
+
+        for dx, dy in delta:
+            nx, ny = x + dx, y + dy
+            if 0 <= nx < n and 0 <= ny < n:
+                if visited[nx][ny] == 0:
+                    visited[nx][ny] = 1
+                    queue.append((nx, ny, d + 1))
+
+    return count
+
+
+T = int(input())
 for tc in range(1, T + 1):
-    n = int(input())
-    operator = deque()
-    number = [0 for i in range(n + 1)]
+    n, m = map(int, input().split())
+    city = [list(map(int, input().split())) for _ in range(n)]
+
+    answer = 0
     for i in range(n):
-        temp = list(map(str, input().split()))
-        if len(temp) == 4:
-            operator.append(temp)
-        else:
-            a, b = int(temp[0]), int(temp[1])
-            number[a] = b
+        for j in range(n):
+            for k in range(1, n + 2):
+                cost = k * k + (k - 1) * (k - 1)
+                profit = bfs(i, j, k)
+                if profit * m >= cost:
+                    answer = max(answer, profit)
 
-    while operator:
-        node, opera, x, y = operator.pop()
-        node = int(node)
-        x = int(x)
-        y = int(y)
-        if opera == '+':
-            number[node] = number[x] + number[y]
-        elif opera == '-':
-            number[node] = number[x] - number[y]
-        elif opera == '*':
-            number[node] = number[x] * number[y]
-        elif opera == '/':
-            number[node] = number[x] // number[y]
-
-    print(f"#{tc} {number[1]}")
+    print(f"#{tc} {answer}")
+    print("Min-Gyeong so Good")
