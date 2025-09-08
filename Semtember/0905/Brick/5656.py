@@ -30,7 +30,7 @@ def gravity(board):
             if board[i][j] != 0:
                 stack.append(board[i][j])
                 board[i][j] = 0
-        i = m-1
+        i = m - 1
         for val in stack:
             board[i][j] = val
             i -= 1
@@ -52,20 +52,20 @@ def find_start(k, board):
         return
     for col in range(n):
         row = -1
-        for r in range(m):
-            if board[r][col] != 0:
-                row = r
+        for temp_row in range(m):
+            if board[temp_row][col] != 0:
+                row = temp_row
                 break
         if row == -1:
             continue
         new_board = deepcopy(board)
         bfs(row, col, new_board)
         gravity(new_board)
-        find_start(k+1, new_board)
+        find_start(k + 1, new_board)
 
 
 T = int(input())
-for tc in range(1, T+1):
+for tc in range(1, T + 1):
     marble, n, m = map(int, input().split())
     brick = [list(map(int, input().split())) for _ in range(m)]
     answer = float('inf')
