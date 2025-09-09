@@ -41,4 +41,3 @@ for tc in range(1, T + 1):
                     answer = max(answer, profit)
 
     print(f"#{tc} {answer}")
-    print("Min-Gyeong so Good")
